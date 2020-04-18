@@ -6,9 +6,9 @@ import json
 from urllib.parse import urlencode, quote
 from datetime import datetime, timedelta
 
-
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 def _convert_to_datetime(date):
     return datetime.strptime(date, '%m/%d/%y')
@@ -19,7 +19,7 @@ def _get_midnight(date):
 
 
 def _get_request(url, headers=None, payload: dict = None, stream: bool = False):
-    print("GET {}".format(url))
+    logging.info(f"GET {url}")
     try:
         return requests.get(url, data=payload, stream=stream, headers=(headers if headers else None))
     except requests.exceptions.RequestException:
